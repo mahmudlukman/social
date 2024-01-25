@@ -14,12 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { LoginSchema } from '@/schemas';
+import { LoginSchema } from '@/lib/schemas';
 import { Button } from '../ui/button';
-// import { login } from '@/actions/login';
 import Link from 'next/link';
 import { FormError } from './Feedback/FormError';
 import { FormSuccess } from './Feedback/FormSuccess';
+import { login } from '@/lib/actions/auth/login';
 
 const LoginForm = () => {
   const [error, setError] = useState<string | undefined>('');
@@ -35,8 +35,16 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values)
-  }
+    setError('');
+    setSuccess('');
+    
+    startTransition(() => {
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
+  };
 
   return (
     <CardWrapper
