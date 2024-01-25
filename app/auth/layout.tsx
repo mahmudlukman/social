@@ -12,7 +12,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body className={`${inter.className} bg-dark-1`}>
-        <div className="h-full flex items-center justify-center">
+        <div className="h-full flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black to-slate-800">
           {children}
         </div>
       </body>
