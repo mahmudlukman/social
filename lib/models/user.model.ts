@@ -1,14 +1,16 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { IAccount } from './accounts.model';
 
 const emailRegexPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-interface IUser extends Document {
+export interface IUser extends Document {
   name: string;
   email: string;
   emailVerified?: Date;
   image?: string;
   password: string;
+  accounts: IAccount[]
 }
 
 const UserSchema = new Schema<IUser>(
@@ -33,6 +35,7 @@ const UserSchema = new Schema<IUser>(
       type: String,
       minlength: [6, 'Password must be at least 6 characters'],
     },
+    accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }]
   },
   { timestamps: true }
 );
