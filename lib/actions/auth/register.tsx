@@ -7,7 +7,6 @@ import bcrypt from 'bcryptjs';
 import { getUserByEmail } from '@/data/user';
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
-  connectToDB();
 
   const validatedFields = RegisterSchema.safeParse(values);
 
