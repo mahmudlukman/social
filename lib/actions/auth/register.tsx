@@ -1,7 +1,6 @@
 'use server';
 import * as z from 'zod';
 import { RegisterSchema } from '@/lib/schemas';
-import { connectToDB } from '../../mongoose';
 import UserModel from '../../models/user.model';
 import bcrypt from 'bcryptjs';
 import { getUserByEmail } from '@/data/user';
