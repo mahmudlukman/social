@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, model, Schema } from 'mongoose';
+import mongoose, { Document, Model, model, models, Schema } from 'mongoose';
 import { IAccount } from './accounts.model';
 
 
@@ -11,7 +11,7 @@ export interface IUser extends Document {
   accounts: IAccount[]
 }
 
-const UserSchema: Schema<IUser> = new mongoose.Schema(
+const UserSchema: Schema<IUser> = new Schema(
   {
     name: {
       type: String,
@@ -28,7 +28,13 @@ const UserSchema: Schema<IUser> = new mongoose.Schema(
   { timestamps: true }
 );
 
-// const UserModel = mongoose.model<IUser> || model<IUser>('User', UserSchema);
-const UserModel = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+const UserModel: Model<IUser> =
+  (mongoose.models && mongoose.models.User) ||
+  mongoose.model<IUser>('User', UserSchema);
+// const UserModel = mongoose.model<IUser>('User', UserSchema);
+// const UserModel = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+
+// export default UserModel;
+// const UserModel: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
 
 export default UserModel;

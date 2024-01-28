@@ -6,8 +6,10 @@ import authConfig from './auth.config';
 export const {
   handlers: { GET, POST },
   auth,
+  signIn,
+  signOut
 } = NextAuth({
-  adapter: MongoDBAdapter(mongoClientPromise, { databaseName: process.env.ENVIRONMENT }),
+  adapter: MongoDBAdapter(mongoClientPromise),
   session: {strategy: "jwt"},
   ...authConfig,
 });
