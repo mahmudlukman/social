@@ -4,11 +4,11 @@ import { RegisterSchema } from '@/lib/schemas';
 // import UserModel from '../../models/user.model';
 import bcrypt from 'bcryptjs';
 import { getUserByEmail } from '@/data/user';
-import { connectToDB } from '@/lib/database/mongoose';
+// import { connectToDB } from '@/lib/database/mongoose';
 import User from '@/lib/models/user.model';
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
-  connectToDB()
+  
   const validatedFields = RegisterSchema.safeParse(values);
 
   if (!validatedFields.success) {

@@ -4,10 +4,10 @@ import { LoginSchema } from '@/lib/schemas';
 import { signIn } from '@/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
-import { connectToDB } from '@/lib/database/mongoose';
+// import { connectToDB } from '@/lib/database/mongoose';
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
-  connectToDB()
+  
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) {
